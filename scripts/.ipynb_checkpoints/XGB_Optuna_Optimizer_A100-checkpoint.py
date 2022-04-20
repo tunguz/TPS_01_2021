@@ -63,17 +63,17 @@ def main():
 
         logger = logging.getLogger()
         logger.setLevel(logging.INFO)  # Setup the root logger.
-        logger.addHandler(logging.FileHandler("optuna_xgb_output_300.log", mode="w"))
+        logger.addHandler(logging.FileHandler("optuna_xgb_output_300_3.log", mode="w"))
 
         optuna.logging.enable_propagation()  # Propagate logs to the root logger.
         optuna.logging.disable_default_handler()  # Stop showing logs in sys.stderr.
 
-        study = optuna.create_study(direction='maximize', storage="sqlite:///xgb_optuna_tests.db", study_name="jan_2021_test_300")
+        study = optuna.create_study(direction='minimize', storage="sqlite:///xgb_optuna_tests.db", study_name="jan_2021_test_300_3")
         logger.info("Start optimization.")
         study.optimize(lambda trial: objective(client, dtrain, dtest, test_y, trial), n_trials=300)
         
     df = study.trials_dataframe(attrs=('number', 'value', 'params', 'state'))
-    df.to_csv('optuna_xgb_output_300.csv', index=False)
+    df.to_csv('optuna_xgb_output_300_3.csv', index=False)
 
 if __name__ == "__main__":
     main()
