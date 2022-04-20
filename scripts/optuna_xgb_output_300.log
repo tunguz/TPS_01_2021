@@ -1,0 +1,9 @@
+A new study created in RDB with name: jan_2021_test_300_0
+Start optimization.
+Trial 0 failed because of the following error: TypeError('objective() takes 1 positional argument but 5 were given')
+Traceback (most recent call last):
+  File "/home/tunguz/.local/lib/python3.8/site-packages/optuna/study/_optimize.py", line 213, in _run_trial
+    value_or_values = func(trial)
+  File "XGB_Optuna_Optimizer_A100.py", line 73, in <lambda>
+    study.optimize(lambda trial: objective(client, dtrain, dtest, test_y, trial), n_trials=300)
+TypeError: objective() takes 1 positional argument but 5 were given
